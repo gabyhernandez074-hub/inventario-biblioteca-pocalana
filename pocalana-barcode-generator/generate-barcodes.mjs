@@ -147,8 +147,8 @@ for (let index = 0; index < amount; index += 1) {
   codes.push(createUniqueCode(existingCodes));
 }
 
-const pdfFile = process.argv[3] ?? "codigos_pocalana_exactos2.pdf";
-const codesFile = process.argv[4] ?? "codigos_pocalana_exactos2.txt";
+const pdfFile = process.argv[3] ?? "codigos_pocalana_nuevos.pdf";
+const codesFile = process.argv[4] ?? "codigos_pocalana_nuevos.txt";
 
 createPdf(codes, pdfFile);
 
