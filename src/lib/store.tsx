@@ -34,6 +34,7 @@ function toSheets(data: Data) {
     Estado: it.loan ? "Prestado" : "Libre",
     Responsable: it.loan?.borrower ?? "",
     Teléfono: it.loan?.phone ?? "",
+    Comentarios: it.loan?.comments ?? "",
     "Días de préstamo": it.loan?.days ?? "",
     "Fecha préstamo": it.loan?.start ?? "",
     "Fecha devolución": it.loan?.due ?? "",
@@ -89,6 +90,7 @@ function fromWorkbook(wb: XLSX.WorkBook): Data {
         ? {
             borrower: String(r["Responsable"] ?? ""),
             phone: String(r["Teléfono"] ?? ""),
+            comments: String(r["Comentarios"] ?? ""),
             days: Number(r["Días de préstamo"] ?? 0),
             start: String(loanStart),
             due: String(r["Fecha devolución"]),

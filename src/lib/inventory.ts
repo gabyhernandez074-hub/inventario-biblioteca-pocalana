@@ -21,6 +21,7 @@ export interface Category {
 export interface Loan {
   borrower: string;
   phone: string;
+  comments?: string;
   days: number;
   start: string; // ISO
   due: string; // ISO
@@ -64,6 +65,12 @@ export const DEFAULT_CATEGORIES: Category[] = [
           "Ilustraciones",
           "Humor",
           "Aventura",
+          "Biografía",
+          "Literatura infantil",
+          "Ensayo",
+          "Novela",
+          "Enciclopedia",
+          "Texto escolar",
           "Otro",
         ],
         otherPrompt: "¿Cuál género?",

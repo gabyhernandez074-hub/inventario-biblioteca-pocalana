@@ -163,7 +163,7 @@ function Home() {
     [items],
   );
   const destacados = useMemo(
-    () => items.filter((i) => i.values["Destacados"] === "Sí" || i.values["Habilidad destacada"]),
+    () => items.filter((i) => i.values["Destacados"] === "Sí"),
     [items],
   );
 
@@ -547,6 +547,9 @@ function Home() {
                 Responsable: <strong>{loanDetail.loan.borrower}</strong>
               </p>
               {loanDetail.loan.phone && <p>Teléfono: {loanDetail.loan.phone}</p>}
+              {loanDetail.loan.comments && (
+                <p className="whitespace-pre-wrap">Comentarios: {loanDetail.loan.comments}</p>
+              )}
               <p>
                 Prestado el {fmtDate(loanDetail.loan.start)} por {loanDetail.loan.days} día(s) · vence{" "}
                 {fmtDate(loanDetail.loan.due)}
@@ -636,6 +639,7 @@ function LoanForm({
   const [days, setDays] = useState("");
   const [borrower, setBorrower] = useState("");
   const [phone, setPhone] = useState("");
+  const [comments, setComments] = useState("");
   const [err, setErr] = useState<string | null>(null);
 
   return (
@@ -662,6 +666,14 @@ function LoanForm({
           onChange={(e) => setPhone(e.target.value.replace(/[^0-9+ ]/g, ""))}
         />
       </Field>
+      <Field label="Comentarios">
+        <textarea
+          className={inputClass}
+          rows={3}
+          value={comments}
+          onChange={(e) => setComments(e.target.value)}
+        />
+      </Field>
       {err && <p className="text-sm font-semibold text-destructive">{err}</p>}
       <button
         className="w-full rounded-lg bg-primary px-4 py-2 font-semibold text-primary-foreground"
@@ -677,6 +689,7 @@ function LoanForm({
             loan: {
               borrower: borrower.trim(),
               phone: phone.trim(),
+              comments: comments.trim(),
               days: d,
               start: start.toISOString(),
               due: new Date(start.getTime() + d * DAY).toISOString(),
