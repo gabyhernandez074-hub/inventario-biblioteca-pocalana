@@ -42,6 +42,9 @@ export function ItemDetails({
           <p className="font-bold text-destructive">En préstamo</p>
           <p>Responsable: {item.loan.borrower}</p>
           {item.loan.phone && <p>Teléfono: {item.loan.phone}</p>}
+          {item.loan.comments && (
+            <p className="whitespace-pre-wrap">Comentarios: {item.loan.comments}</p>
+          )}
           <p>
             Prestado el {fmtDate(item.loan.start)} por {item.loan.days} días · vence{" "}
             {fmtDate(item.loan.due)}
